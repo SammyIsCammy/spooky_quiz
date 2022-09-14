@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spooky Quiz</title>
+</head>
+<body>
+    <script>
+        /*
+        * This project will be a web page.
+        * The project is a scary movie quiz and if the user gets a question (or multiple questions) wrong, they get JUMPSCARED!!! 
+        * REMEMBER TO START WITH A SKATEBOARD AND SLOWLY PROGRESS TO YOUR BICYCLE THEN YOUR CAR!!!
+        */
+        
+        const QUESTIONS = ["Question 1", "Question 2", "Question 3", "Question 4", "Question 5"]; // This array contains all the questions. 
+
+        document.addEventListener("DOMContentLoaded", function(){
+
+            // Below I am initializing the variables for the question and the answers that will continously change.
+            let questionHeader = document.getElementById("questionHeader");
+            let answerOne = document.getElementById("answerOne");
+            let answerTwo = document.getElementById("answerTwo");
+            let answerThree = document.getElementById("answerThree");
+            let answerFour = document.getElementById("answerFour");
+            let submitQuestion = document.getElementById("submitQuestion");
+            let testImage = document.getElementById("testImage");
+
+            questionHeader.innerText = "Question 1: ";
+            answerOne.innerText = "Answer 1";
+            answerTwo.innerText = "Answer 2";
+            answerThree.innerText = "Answer 3";
+            answerFour.innerText = "Answer 4";
+
+            submitQuestion.onclick = function(){ // When the button is clicked, the image will appear.
+                testImage.style.display = "block"; 
+            }
+
+        })
+    </script>
+    <!--The image is in the webpage but it is not visible yet until the button is clicked-->
+    <img src="./images/test-image.webp" alt="Test Image" id="testImage" style="display:none">
+    <h1 id="questionHeader"></h1>
+    <h3 id="answerOne"></h3>
+    <h3 id="answerTwo"></h3>
+    <h3 id="answerThree"></h3>
+    <h3 id="answerFour"></h3>
+    <button id="submitQuestion">SUBMIT</button>
+</body>
+</html>
