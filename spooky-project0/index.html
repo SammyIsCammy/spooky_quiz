@@ -13,11 +13,17 @@
         * The project is a scary movie quiz and if the user gets a question (or multiple questions) wrong, they get JUMPSCARED!!! 
         * REMEMBER TO START WITH A SKATEBOARD AND SLOWLY PROGRESS TO YOUR BICYCLE THEN YOUR CAR!!!
         */
-        
         const QUESTIONS = ["Question 1", "Question 2", "Question 3", "Question 4", "Question 5"]; // This array contains all the questions. 
+        
+        const QUESTION_EMILY = {
+            1: {
+                question: "Where did the Salem witch trials take place?", 
+                correctAnswer: "Salem, MA", 
+                allAnswers: ["Poolesville, MD", "Reston, VA", "Salem, MA", "Los Angeles, CA"]
+            } 
+        }
 
         document.addEventListener("DOMContentLoaded", function(){
-
             // Below I am initializing the variables for the question and the answers that will continously change.
             let questionHeader = document.getElementById("questionHeader");
             let answerOne = document.getElementById("answerOne");
