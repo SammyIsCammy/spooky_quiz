@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <title>Spooky Quiz</title>
 </head>
 <body>
+    <style>
+        html {
+            text-align: center;
+        }
+        .questionHeader {
+            padding-bottom: 35px;
+        }
+        .answerBtn {
+            border: none;
+            background-color: white;
+            font-size: x-large;
+        }
+        .answerBtn:hover {
+            background-color: gray;
+            color: white;
+            transition: 1s;
+        }
+    </style>
     <script>
         /*
         * This project will be a web page.
@@ -23,8 +42,10 @@
             } 
         }
 
+        let numberQuestion = 1; // user starts at the first question
+
         document.addEventListener("DOMContentLoaded", function(){
-            // Below I am initializing the variables for the question and the answers that will continously change.
+            // initialize the variables for the question and the answers that will continously change
             let questionHeader = document.getElementById("questionHeader");
             let answerOne = document.getElementById("answerOne");
             let answerTwo = document.getElementById("answerTwo");
@@ -33,25 +54,59 @@
             let submitQuestion = document.getElementById("submitQuestion");
             let testImage = document.getElementById("testImage");
 
-            questionHeader.innerText = "Question 1: ";
-            answerOne.innerText = "Answer 1";
-            answerTwo.innerText = "Answer 2";
-            answerThree.innerText = "Answer 3";
-            answerFour.innerText = "Answer 4";
+            // assign answer buttons their onclick function
+            answerOne.onclick = () => submitAnswer(1);
+            answerTwo.onclick = () => submitAnswer(2);
+            answerThree.onclick = () => submitAnswer(3);
+            answerFour.onclick = () => submitAnswer(4);
 
-            submitQuestion.onclick = function(){ // When the button is clicked, the image will appear.
-                testImage.style.display = "block"; 
+            questionHeader.innerText = QUESTION_EMILY[numberQuestion]["question"];
+            answerOne.innerText = QUESTION_EMILY[numberQuestion]["allAnswers"][0];
+            answerTwo.innerText = QUESTION_EMILY[numberQuestion]["allAnswers"][1];
+            answerThree.innerText = QUESTION_EMILY[numberQuestion]["allAnswers"][2];
+            answerFour.innerText = QUESTION_EMILY[numberQuestion]["allAnswers"][3];
+            
+            // When a user selects an answer, call this function
+            function submitAnswer(answer) {
+                switch (answer) {
+                    case 1:
+                        answerOne.style.backgroundColor = "grey";
+                        answerOne.style.color = "white";
+                        break;
+                    case 2:
+                        answerTwo.style.backgroundColor = "grey";
+                        answerTwo.style.color = "white";
+                        break;
+                    case 3:
+                        answerThree.style.backgroundColor = "grey";
+                        answerThree.style.color = "white";
+                        break;
+                    case 4:
+                        answerFour.style.backgroundColor = "grey";
+                        answerFour.style.color = "white";
+                        break;
+                }
+                // if user selected the correct answer
+                if (QUESTION_EMILY[numberQuestion]["allAnswers"][answer-1] === QUESTION_EMILY[numberQuestion]["correctAnswer"]) {
+                    console.log('correct!');
+                } else { // answer is incorrect
+                    testImage.style.display = "block";
+                    console.log('incorrect!');
+                }
             }
-
         })
     </script>
     <!--The image is in the webpage but it is not visible yet until the button is clicked-->
     <img src="./images/test-image.webp" alt="Test Image" id="testImage" style="display:none">
-    <h1 id="questionHeader"></h1>
-    <h3 id="answerOne"></h3>
-    <h3 id="answerTwo"></h3>
-    <h3 id="answerThree"></h3>
-    <h3 id="answerFour"></h3>
-    <button id="submitQuestion">SUBMIT</button>
+    <h1 class="questionHeader" id="questionHeader"></h1>
+    <button class="answerBtn" id="answerOne"></button>
+    <br/><br/>
+    <button class="answerBtn" id="answerTwo"></button>
+    <br/><br/>
+    <button class="answerBtn" id="answerThree"></button>
+    <br/><br/>
+    <button class="answerBtn" id="answerFour"></button>
+    <br/><br/>
+    <button id="nextQuestion">NEXT</button>
 </body>
 </html>
